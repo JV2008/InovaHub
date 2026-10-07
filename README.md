@@ -55,7 +55,7 @@ Projeto em desenvolvimento, com estrutura inicial preparada para evoluir e receb
 | Repositório Git | ✅ Concluído |
 | Mínimo de 30 commits | ⏳ Em andamento |
 | Mínimo de 50 cards | ⏳ Em andamento |
-| Benchmarking de 5 soluções | ⏳ Em andamento |
+| Benchmarking de 5 soluções | ✅ Concluído |
 | Proposta de valor | ⏳ Em andamento |
 | 10 requisitos funcionais | ✅ Concluído |
 | 10 requisitos não funcionais | ✅ Concluído |
