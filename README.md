@@ -27,20 +27,21 @@ Projeto em desenvolvimento, com estrutura inicial preparada para evoluir e receb
 
 ## ✅ Concluído
 
-- [x] Aplicação Front-end funcional
 - [x] Repositório Git
+- [x] Benchmarking de 5 soluções
+- [x] Proposta de Valor
 - [x] 10 requisitos funcionais
 - [x] 10 requisitos não funcionais
 - [x] User Stories
 - [x] Protótipo com mínimo de 10 telas
-- [x] Proposta de Valor
 
 ## 🚧 Em Andamento
 
+- [ ] Aplicação Front-end funcional
 - [ ] Aplicação publicada
 - [ ] Mínimo de 30 commits
 - [ ] Mínimo de 50 cards
-- [ ] Benchmarking de 5 soluções
+- [ ] Protótipo com mínimo de 10 telas
 - [ ] README completo
 - [ ] Registro da utilização de IA
 
@@ -50,19 +51,19 @@ Projeto em desenvolvimento, com estrutura inicial preparada para evoluir e receb
 
 | Entrega | Status | Link |
 |----------|---------|---------|
-| Aplicação Front-end funcional | ⏳ Em andamento | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
-| Aplicação publicada | ⏳ Em andamento | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
-| Repositório Git | ✅ Concluído | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
-| Mínimo de 30 commits | ⏳ Em andamento | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
-| Mínimo de 50 cards | ⏳ Em andamento | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
-| Benchmarking de 5 soluções | ✅ Concluído | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
-| Proposta de valor | ✅ Concluído | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
-| 10 requisitos funcionais | ✅ Concluído | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
-| 10 requisitos não funcionais | ✅ Concluído | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
-| User Stories | ✅ Concluído | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
-| Protótipo com mínimo de 10 telas | ⏳ Em andamento | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
-| README completo | ⏳ Em andamento | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
-| Registro da utilização de IA | ⏳ Em andamento | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
+| Aplicação Front-end funcional | ⏳ Em andamento | [🔗 Repositório]() |
+| Aplicação publicada | ⏳ Em andamento | [🔗 Repositório]() |
+| Repositório Git | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub) |
+| Mínimo de 30 commits | ⏳ Em andamento | [🔗 Repositório]() |
+| Mínimo de 50 cards | ⏳ Em andamento | [🔗 Repositório]() |
+| Benchmarking de 5 soluções | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/blob/develop/docs/benchmarking_InovaHub.md) |
+| Proposta de valor | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/blob/develop/docs/Proposta_de_Valor_InovaHub.md) |
+| 10 requisitos funcionais | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/blob/develop/docs/Requisitos%20funcionais.md) |
+| 10 requisitos não funcionais | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/blob/develop/docs/Requisitos%20nao%20funcionais.md) |
+| User Stories | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/blob/develop/docs/historia%20de%20usuario.md) |
+| Protótipo com mínimo de 10 telas | ⏳ Em andamento | [🔗 Repositório]() |
+| README completo | ⏳ Em andamento | [🔗 Repositório]() |
+| Registro da utilização de IA | ⏳ Em andamento | [🔗 Repositório]() |
 
 ## Resumo
 
