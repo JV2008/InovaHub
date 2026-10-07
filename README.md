@@ -22,3 +22,51 @@ O objetivo do projeto é demonstrar habilidades de criação de interfaces, estr
 
 ## Status
 Projeto em desenvolvimento, com estrutura inicial preparada para evoluir e receber integração com deploy e demais ajustes finais.
+
+# Checklist de Entregas do Projeto InovaHub
+
+## ✅ Concluído
+
+- [x] Aplicação Front-end funcional
+- [x] Repositório Git
+- [x] 10 requisitos funcionais
+- [x] 10 requisitos não funcionais
+- [x] User Stories
+- [x] Protótipo com mínimo de 10 telas
+- [x] Proposta de Valor
+
+## 🚧 Em Andamento
+
+- [ ] Aplicação publicada
+- [ ] Mínimo de 30 commits
+- [ ] Mínimo de 50 cards
+- [ ] Benchmarking de 5 soluções
+- [ ] README completo
+- [ ] Registro da utilização de IA
+
+---
+
+# Progresso Geral
+
+| Entrega | Status |
+|----------|---------|
+| Aplicação Front-end funcional | ✅ Concluído |
+| Aplicação publicada | ⏳ Em andamento |
+| Repositório Git | ✅ Concluído |
+| Mínimo de 30 commits | ⏳ Em andamento |
+| Mínimo de 50 cards | ⏳ Em andamento |
+| Benchmarking de 5 soluções | ⏳ Em andamento |
+| Proposta de valor | ✅ Concluído |
+| 10 requisitos funcionais | ✅ Concluído |
+| 10 requisitos não funcionais | ✅ Concluído |
+| User Stories | ✅ Concluído |
+| Protótipo com mínimo de 10 telas | ✅ Concluído |
+| README completo | ⏳ Em andamento |
+| Registro da utilização de IA | ⏳ Em andamento |
+
+## Resumo
+
+- ✅ Concluído: 6/13
+- ⏳ Em andamento: 7/13
+
+**Progresso total: 46%**
