@@ -50,23 +50,23 @@ Projeto em desenvolvimento, com estrutura inicial preparada para evoluir e receb
 
 | Entrega | Status |
 |----------|---------|
-| Aplicação Front-end funcional | ✅ Concluído |
+| Aplicação Front-end funcional | ⏳ Em andamento |
 | Aplicação publicada | ⏳ Em andamento |
 | Repositório Git | ✅ Concluído |
 | Mínimo de 30 commits | ⏳ Em andamento |
 | Mínimo de 50 cards | ⏳ Em andamento |
 | Benchmarking de 5 soluções | ⏳ Em andamento |
-| Proposta de valor | ✅ Concluído |
+| Proposta de valor | ⏳ Em andamento |
 | 10 requisitos funcionais | ✅ Concluído |
 | 10 requisitos não funcionais | ✅ Concluído |
 | User Stories | ✅ Concluído |
-| Protótipo com mínimo de 10 telas | ✅ Concluído |
+| Protótipo com mínimo de 10 telas | ⏳ Em andamento |
 | README completo | ⏳ Em andamento |
 | Registro da utilização de IA | ⏳ Em andamento |
 
 ## Resumo
 
-- ✅ Concluído: 6/13
-- ⏳ Em andamento: 7/13
+- ✅ Concluído: 4/13
+- ⏳ Em andamento: 9/13
 
 **Progresso total: 46%**
