@@ -56,7 +56,7 @@ Projeto em desenvolvimento, com estrutura inicial preparada para evoluir e receb
 | Mínimo de 30 commits | ⏳ Em andamento |
 | Mínimo de 50 cards | ⏳ Em andamento |
 | Benchmarking de 5 soluções | ✅ Concluído |
-| Proposta de valor | ⏳ Em andamento |
+| Proposta de valor | ✅ Concluído |
 | 10 requisitos funcionais | ✅ Concluído |
 | 10 requisitos não funcionais | ✅ Concluído |
 | User Stories | ✅ Concluído |
