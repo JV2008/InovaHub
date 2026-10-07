@@ -48,21 +48,21 @@ Projeto em desenvolvimento, com estrutura inicial preparada para evoluir e receb
 
 # Progresso Geral
 
-| Entrega | Status |
-|----------|---------|
-| Aplicação Front-end funcional | ⏳ Em andamento |
-| Aplicação publicada | ⏳ Em andamento |
-| Repositório Git | ✅ Concluído |
-| Mínimo de 30 commits | ⏳ Em andamento |
-| Mínimo de 50 cards | ⏳ Em andamento |
-| Benchmarking de 5 soluções | ✅ Concluído |
-| Proposta de valor | ✅ Concluído |
-| 10 requisitos funcionais | ✅ Concluído |
-| 10 requisitos não funcionais | ✅ Concluído |
-| User Stories | ✅ Concluído |
-| Protótipo com mínimo de 10 telas | ⏳ Em andamento |
-| README completo | ⏳ Em andamento |
-| Registro da utilização de IA | ⏳ Em andamento |
+| Entrega | Status | Link |
+|----------|---------|---------|
+| Aplicação Front-end funcional | ⏳ Em andamento | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
+| Aplicação publicada | ⏳ Em andamento | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
+| Repositório Git | ✅ Concluído | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
+| Mínimo de 30 commits | ⏳ Em andamento | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
+| Mínimo de 50 cards | ⏳ Em andamento | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
+| Benchmarking de 5 soluções | ✅ Concluído | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
+| Proposta de valor | ✅ Concluído | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
+| 10 requisitos funcionais | ✅ Concluído | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
+| 10 requisitos não funcionais | ✅ Concluído | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
+| User Stories | ✅ Concluído | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
+| Protótipo com mínimo de 10 telas | ⏳ Em andamento | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
+| README completo | ⏳ Em andamento | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
+| Registro da utilização de IA | ⏳ Em andamento | [🔗 Repositório](https://github.com/guilhermelleiteads/senai-projeto-vanilla) |
 
 ## Resumo
 
