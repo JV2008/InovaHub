@@ -1,7 +1,7 @@
 # InovaHub
 
 ## Link do Vercel
-Em breve: [link](https://inova-hub.vercel.app/)
+Em breve: [https://inova-hub.vercel.app/](https://inova-hub.vercel.app/)
 
 # Checklist de Entregas do Projeto InovaHub
 
@@ -19,10 +19,7 @@ Em breve: [link](https://inova-hub.vercel.app/)
 - [x] Protótipo com mínimo de 10 telas
 - [x] README completo
 - [x] Registro da utilização de IA
-
-## 🚧 Em Andamento
-
-- [ ] Aplicação publicada
+- [x] Aplicação publicada
 
 ---
 
