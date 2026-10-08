@@ -310,11 +310,11 @@ export default function Home() {
           </form>
 
           <div className="mt-8 flex items-center justify-between text-xs">
-            <a href="#" className="flex items-center gap-1 font-medium text-slate-600 hover:text-slate-900">
+            <a href="/" className="flex items-center gap-1 font-medium text-slate-600 hover:text-slate-900">
               {backArrowIcon}
               Voltar à Página Inicial
             </a>
-            <a href="#" className="flex items-center gap-1 font-medium text-slate-600 hover:text-slate-900">
+            <a href="/explorar" className="flex items-center gap-1 font-medium text-slate-600 hover:text-slate-900">
               Explorar Projetos sem Login
               {searchIcon}
             </a>

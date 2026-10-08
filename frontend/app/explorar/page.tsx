@@ -4,8 +4,8 @@ import { useState } from "react";
 import Header from "@/components/Header";
 
 const breadcrumbItems = [
-  { label: "Início", href: "#" },
-  { label: "Explorar Projetos", href: "#" },
+  { label: "Início", href: "/" },
+  { label: "Explorar Projetos", href: "/explorar" },
 ];
 
 const odsOptions = [
@@ -460,7 +460,7 @@ export default function ExplorarPage() {
               <h4 className="text-sm font-semibold text-slate-900">Links Rápidos</h4>
               <ul className="mt-4 space-y-2">
                 <li>
-                  <a href="#" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
+                  <a href="/explorar" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
                     Explorar Projetos
                   </a>
                 </li>
