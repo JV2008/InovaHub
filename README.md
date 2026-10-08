@@ -20,6 +20,15 @@ O objetivo do projeto é demonstrar habilidades de criação de interfaces, estr
 - Vitor Fazano
 - João Carlso
 
+## 👥 Integrantes
+
+| Foto | Nome | GitHub | Função no Projeto |
+|------|------|--------|-------------------|
+| <img src="https://github.com/guilhermelleiteads.png" width="50px"> | **Guilherme Leite** | [guilhermeleiteads](https://github.com/guilhermelleiteads) | Em andamento |
+| <img src="https://github.com/JV2008.png" width="50px"> | **- João Leite** | [JV2008](https://github.com/JV2008) | Em andamento |
+| <img src="https://github.com/vfazano.png" width="50px"> | **Vitor Fazano** | [vfazano](https://github.com/vfazano) | Em andamento |
+| <img src="https://github.com/JCReis12.png" width="50px"> | **João Carlso** | [JCReis12](https://github.com/JCReis12) | Em andamento |
+
 ## Status
 Projeto em desenvolvimento, com estrutura inicial preparada para evoluir e receber integração com deploy e demais ajustes finais.
 
@@ -28,6 +37,7 @@ Projeto em desenvolvimento, com estrutura inicial preparada para evoluir e receb
 ## ✅ Concluído
 
 - [x] Repositório Git
+- [x] Mínimo de 50 cards
 - [x] Benchmarking de 5 soluções
 - [x] Proposta de Valor
 - [x] 10 requisitos funcionais
@@ -40,7 +50,6 @@ Projeto em desenvolvimento, com estrutura inicial preparada para evoluir e receb
 - [ ] Aplicação Front-end funcional
 - [ ] Aplicação publicada
 - [ ] Mínimo de 30 commits
-- [ ] Mínimo de 50 cards
 - [ ] Protótipo com mínimo de 10 telas
 - [ ] README completo
 - [ ] Registro da utilização de IA
@@ -55,7 +64,7 @@ Projeto em desenvolvimento, com estrutura inicial preparada para evoluir e receb
 | Aplicação publicada | ⏳ Em andamento | [🔗 Repositório]() |
 | Repositório Git | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub) |
 | Mínimo de 30 commits | ⏳ Em andamento | [🔗 Repositório]() |
-| Mínimo de 50 cards | ⏳ Em andamento | [🔗 Repositório]() |
+| Mínimo de 50 cards | ✅ Concluído | [🔗 Repositório](https://github.com/users/JV2008/projects/6) |
 | Benchmarking de 5 soluções | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/blob/develop/docs/benchmarking_InovaHub.md) |
 | Proposta de valor | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/blob/develop/docs/Proposta_de_Valor_InovaHub.md) |
 | 10 requisitos funcionais | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/blob/develop/docs/Requisitos%20funcionais.md) |
@@ -67,7 +76,7 @@ Projeto em desenvolvimento, com estrutura inicial preparada para evoluir e receb
 
 ## Resumo
 
-- ✅ Concluído: 4/13
-- ⏳ Em andamento: 9/13
+- ✅ Concluído: 7/13
+- ⏳ Em andamento: 6/13
 
-**Progresso total: 46%**
+**Progresso total: 54%**
