@@ -8,6 +8,7 @@ Em breve: [Adicionar link do deploy](#)
 ## ✅ Concluído
 
 - [x] Repositório Git
+- [ ] Mínimo de 30 commits
 - [x] Mínimo de 50 cards
 - [x] Benchmarking de 5 soluções
 - [x] Proposta de Valor
@@ -15,15 +16,13 @@ Em breve: [Adicionar link do deploy](#)
 - [x] 10 requisitos não funcionais
 - [x] User Stories
 - [x] Protótipo com mínimo de 10 telas
+- [x] README completo
+- [x] Registro da utilização de IA
 
 ## 🚧 Em Andamento
 
 - [ ] Aplicação Front-end funcional
 - [ ] Aplicação publicada
-- [ ] Mínimo de 30 commits
-- [ ] Protótipo com mínimo de 10 telas
-- [ ] README completo
-- [ ] Registro da utilização de IA
 
 ---
 
