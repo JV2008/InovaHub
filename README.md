@@ -34,7 +34,7 @@ Em breve: [Adicionar link do deploy](#)
 | Aplicação Front-end funcional | ⏳ Em andamento | [🔗 Repositório]() |
 | Aplicação publicada | ⏳ Em andamento | [🔗 Repositório]() |
 | Repositório Git | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub) |
-| Mínimo de 30 commits | ⏳ Em andamento | [🔗 Repositório]() |
+| Mínimo de 30 commits | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/commits/develop/) |
 | Mínimo de 50 cards | ✅ Concluído | [🔗 Repositório](https://github.com/users/JV2008/projects/6) |
 | Benchmarking de 5 soluções | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/blob/develop/docs/benchmarking_InovaHub.md) |
 | Proposta de valor | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/blob/develop/docs/Proposta_de_Valor_InovaHub.md) |
@@ -42,15 +42,15 @@ Em breve: [Adicionar link do deploy](#)
 | 10 requisitos não funcionais | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/blob/develop/docs/requisitos/Requisitos%20nao%20funcionais.md) |
 | User Stories | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/blob/develop/docs/requisitos/historia%20de%20usuario.md) |
 | Protótipo com mínimo de 10 telas | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/tree/develop/docs/prototipo) |
-| README completo | ⏳ Em andamento | [🔗 Repositório]() |
-| Registro da utilização de IA | ⏳ Em andamento | [🔗 Repositório]() |
+| README completo | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/edit/develop/README.md) |
+| Registro da utilização de IA | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/blob/develop/docs/requisitos/utiliza%C3%A7%C3%A3o%20de%20ia.md) |
 
 ## Resumo
 
-- ✅ Concluído: 8/13
-- ⏳ Em andamento: 5/13
+- ✅ Concluído: 11/13
+- ⏳ Em andamento: 2/13
 
-**Progresso total: 54%**
+**Progresso total: 84%**
 
 ## 👥 Integrantes
 
