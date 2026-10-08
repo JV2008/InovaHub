@@ -7,8 +7,9 @@ Em breve: [Adicionar link do deploy](#)
 
 ## ✅ Concluído
 
+- [x] Aplicação Front-end funcional
 - [x] Repositório Git
-- [ ] Mínimo de 30 commits
+- [x] Mínimo de 30 commits
 - [x] Mínimo de 50 cards
 - [x] Benchmarking de 5 soluções
 - [x] Proposta de Valor
@@ -21,7 +22,6 @@ Em breve: [Adicionar link do deploy](#)
 
 ## 🚧 Em Andamento
 
-- [ ] Aplicação Front-end funcional
 - [ ] Aplicação publicada
 
 ---
@@ -30,7 +30,7 @@ Em breve: [Adicionar link do deploy](#)
 
 | Entrega | Status | Link |
 |----------|---------|---------|
-| Aplicação Front-end funcional | ⏳ Em andamento | [🔗 Repositório]() |
+| Aplicação Front-end funcional | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/tree/develop/frontend) |
 | Aplicação publicada | ⏳ Em andamento | [🔗 Repositório]() |
 | Repositório Git | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub) |
 | Mínimo de 30 commits | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/commits/develop/) |
@@ -46,10 +46,10 @@ Em breve: [Adicionar link do deploy](#)
 
 ## Resumo
 
-- ✅ Concluído: 11/13
-- ⏳ Em andamento: 2/13
+- ✅ Concluído: 12/13
+- ⏳ Em andamento: 1/13
 
-**Progresso total: 84%**
+**Progresso total: 92%**
 
 ## 👥 Integrantes
 
