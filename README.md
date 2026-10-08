@@ -1,7 +1,7 @@
 # InovaHub
 
 ## Link do Vercel
-Em breve: [Adicionar link do deploy](#)
+Em breve: [link](https://inova-hub.vercel.app/)
 
 # Checklist de Entregas do Projeto InovaHub
 
@@ -31,7 +31,7 @@ Em breve: [Adicionar link do deploy](#)
 | Entrega | Status | Link |
 |----------|---------|---------|
 | Aplicação Front-end funcional | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/tree/develop/frontend) |
-| Aplicação publicada | ⏳ Em andamento | [🔗 Repositório]() |
+| Aplicação publicada | ✅ Concluído | [🔗 Repositório](https://inova-hub.vercel.app/) |
 | Repositório Git | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub) |
 | Mínimo de 30 commits | ✅ Concluído | [🔗 Repositório](https://github.com/JV2008/InovaHub/commits/develop/) |
 | Mínimo de 50 cards | ✅ Concluído | [🔗 Repositório](https://github.com/users/JV2008/projects/6) |
@@ -46,10 +46,10 @@ Em breve: [Adicionar link do deploy](#)
 
 ## Resumo
 
-- ✅ Concluído: 12/13
-- ⏳ Em andamento: 1/13
+- ✅ Concluído: 13/13
+- ⏳ Em andamento: 0/13
 
-**Progresso total: 92%**
+**Progresso total: 100%**
 
 ## 👥 Integrantes
 
