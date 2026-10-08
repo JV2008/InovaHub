@@ -1,0 +1,28 @@
+## Utilização de Inteligência Artificial
+
+- Definição da ideia do projeto.
+- Refinamento do problema de negócio.
+- Criação da proposta de valor.
+- Geração de benchmarking de soluções similares.
+- Levantamento dos requisitos funcionais.
+- Levantamento dos requisitos não funcionais.
+- Criação das histórias de usuário.
+- Estruturação da arquitetura da aplicação.
+- Organização da estrutura de pastas.
+- Definição das páginas da plataforma.
+- Criação do fluxo de navegação.
+- Apoio no desenvolvimento em React.
+- Apoio na estilização com Tailwind CSS.
+- Criação de componentes reutilizáveis.
+- Implementação de rotas da aplicação.
+- Geração de dados mockados para testes.
+- Correção de erros e depuração de código.
+- Sugestões de boas práticas de desenvolvimento.
+- Criação do quadro Kanban e cards de tarefas.
+- Produção da documentação técnica.
+- Criação e revisão do README.
+- Revisão ortográfica e textual da documentação.
+- Sugestões de melhorias e evolução do projeto.
+- Apoio na preparação da apresentação final.
+- Geração de exemplos de código.
+- Auxílio na publicação da aplicação na Vercel.
