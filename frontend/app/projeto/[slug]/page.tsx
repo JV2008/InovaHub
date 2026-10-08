@@ -4,8 +4,8 @@ import { useState } from "react";
 import Header from "@/components/Header";
 
 const breadcrumbItems = [
-  { label: "Início", href: "#" },
-  { label: "Explorar Projetos", href: "#" },
+  { label: "Início", href: "/" },
+  { label: "Explorar Projetos", href: "/explorar" },
   { label: "EcoSensors IoT", href: "#" },
 ];
 
