@@ -301,20 +301,20 @@ export default function Home() {
               </div>
             </div>
 
-            <button
-              type="submit"
+            <Link
+              href="/explorar"
               className="flex w-full items-center justify-center gap-2 rounded-lg bg-orange-600 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
             >
               Entrar no InovaHub
               {arrowRightIcon}
-            </button>
+            </Link>
           </form>
 
           <div className="mt-8 flex items-center justify-between text-xs">
-            <a href="/" className="flex items-center gap-1 font-medium text-slate-600 hover:text-slate-900">
+            <Link href="/" className="flex items-center gap-1 font-medium text-slate-600 hover:text-slate-900">
               {backArrowIcon}
               Voltar à Página Inicial
-            </a>
+            </Link>
             <a href="/explorar" className="flex items-center gap-1 font-medium text-slate-600 hover:text-slate-900">
               Explorar Projetos sem Login
               {searchIcon}

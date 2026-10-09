@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Header from "@/components/Header";
+import Link from "next/link";
 
 const breadcrumbItems = [
   { label: "Início", href: "/" },
@@ -375,15 +376,15 @@ export default function ExplorarPage() {
                             {project.collaborators}
                           </span>
                         </div>
-                        <a
-                          href="#"
+                        <Link
+                          href="/projeto/ecosensors-iot"
                           className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-orange-600 transition-colors hover:text-orange-500"
                         >
                           Ver Detalhes
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M5 12h14M12 5l7 7-7 7" />
                           </svg>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </article>
