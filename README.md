@@ -2,7 +2,7 @@
 # InovaHub
 
 ## Link do Vercel
-Em breve: [https://inova-hub.vercel.app/](https://inova-hub.vercel.app/)
+Link de acesso: [https://inova-hub-jv2008s-projects.vercel.app/?_vercel_share=qUzADmtaN28JA2Rv7zv5XxkfoGMkq54m](https://inova-hub-jv2008s-projects.vercel.app/?_vercel_share=qUzADmtaN28JA2Rv7zv5XxkfoGMkq54m)
 
 # Checklist de Entregas do Projeto InovaHub
 
