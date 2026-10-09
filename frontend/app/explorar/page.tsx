@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Header from "@/components/Header";
+import Link from "next/link";
 
 const breadcrumbItems = [
   { label: "Início", href: "/" },
@@ -34,10 +35,42 @@ const profileOptions = [
   "Parceria Corporativa / Fundo",
 ];
 
-const activeFilters = [
-  { label: "ODS 9 • Indústria & Inovação", color: "bg-orange-50 text-orange-700" },
-  { label: "MVP Funcional", color: "bg-blue-50 text-blue-700" },
-];
+const odsCodes: Record<string, string> = {
+  "Indústria & Inovação": "ODS 9",
+  "Educação de Qualidade": "ODS 4",
+  "Trabalho Decente & Cresc.": "ODS 8",
+  "Cidades Sustentáveis": "ODS 11",
+  "Consumo Responsável": "ODS 12",
+  "Parcerias e Conexões": "ODS 17",
+};
+
+const maturityKeywords: Record<string, string[]> = {
+  "Ideação & Conceito": ["ideação"],
+  "Protótipo / Wireframe": ["protótipo"],
+  "MVP Funcional": ["mvp"],
+  "Validação de Mercado": ["validação"],
+  "Em Escala / Rollout": ["escala"],
+};
+
+const profileKeywords: Record<string, string[]> = {
+  "Frontend (React / Vue)": ["frontend", "react", "vue"],
+  "Backend & Cloud (Node/Go)": ["backend", "node", "go", "devops", "cloud"],
+  "Cientista de Dados / IA": ["cientista de dados", "ia"],
+  "UI/UX Designer": ["designer", "ui/ux"],
+  "Mentoria Técnica Especializada": ["mentoria"],
+  "Parceria Corporativa / Fundo": ["conexão com empresas", "parceria", "fundo"],
+};
+
+type FilterCategory = "ods" | "maturity" | "profile";
+type ProjectFilters = Record<FilterCategory, string[]>;
+const initialFilters: ProjectFilters = { ods: [], maturity: [], profile: [] };
+const pageSize = 6;
+
+function projectAgeInHours(time: string) {
+  const age = time.match(/(\d+)\s+(dia|hora)/);
+  if (!age) return Number.MAX_SAFE_INTEGER;
+  return Number(age[1]) * (age[2] === "dia" ? 24 : 1);
+}
 
 const projects = [
   {
@@ -130,6 +163,84 @@ export default function ExplorarPage() {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("Mais recentes");
   const [page, setPage] = useState(1);
+  const [filters, setFilters] = useState<ProjectFilters>(initialFilters);
+
+  const toggleFilter = (category: FilterCategory, option: string) => {
+    setFilters((current) => ({
+      ...current,
+      [category]: current[category].includes(option)
+        ? current[category].filter((selected) => selected !== option)
+        : [...current[category], option],
+    }));
+    setPage(1);
+  };
+
+  const resetFilters = () => {
+    setSearch("");
+    setSort("Mais recentes");
+    setFilters(initialFilters);
+    setPage(1);
+  };
+
+  const normalizedSearch = search.trim().toLocaleLowerCase("pt-BR");
+  const filteredProjects = projects
+    .filter((project) => {
+      const matchesSearch =
+        !normalizedSearch ||
+        [
+          project.title,
+          project.description,
+          ...project.technologies,
+          ...project.vacancies,
+          ...project.badges.map((badge) => badge.label),
+          project.creator.name,
+        ]
+          .join(" ")
+          .toLocaleLowerCase("pt-BR")
+          .includes(normalizedSearch);
+      const matchesOds =
+        filters.ods.length === 0 ||
+        filters.ods.some((option) =>
+          project.badges.some((badge) => badge.label.includes(odsCodes[option])),
+        );
+      const matchesMaturity =
+        filters.maturity.length === 0 ||
+        filters.maturity.some((option) =>
+          project.badges.some((badge) =>
+            maturityKeywords[option].some((keyword) =>
+              badge.label.toLocaleLowerCase("pt-BR").includes(keyword),
+            ),
+          ),
+        );
+      const matchesProfile =
+        filters.profile.length === 0 ||
+        filters.profile.some((option) =>
+          project.vacancies.some((vacancy) =>
+            profileKeywords[option].some((keyword) =>
+              vacancy.toLocaleLowerCase("pt-BR").includes(keyword),
+            ),
+          ),
+        );
+
+      return matchesSearch && matchesOds && matchesMaturity && matchesProfile;
+    })
+    .sort((first, second) => {
+      if (sort === "Mais colaboradores") {
+        return second.collaborators - first.collaborators;
+      }
+      if (sort === "Mais relevantes") {
+        const firstUrgent = first.vacancies.some((vacancy) => vacancy.includes("Urgente"));
+        const secondUrgent = second.vacancies.some((vacancy) => vacancy.includes("Urgente"));
+        return Number(secondUrgent) - Number(firstUrgent) || second.collaborators - first.collaborators;
+      }
+      return projectAgeInHours(first.creator.time) - projectAgeInHours(second.creator.time);
+    });
+
+  const pageCount = Math.max(1, Math.ceil(filteredProjects.length / pageSize));
+  const visibleProjects = filteredProjects.slice((page - 1) * pageSize, page * pageSize);
+  const selectedFilters = (Object.keys(filters) as FilterCategory[]).flatMap((category) =>
+    filters[category].map((label) => ({ category, label })),
+  );
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
@@ -138,21 +249,21 @@ export default function ExplorarPage() {
       <main className="flex-1">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-slate-500">
-            <a href="#" className="transition-colors hover:text-slate-700">
+            <Link href="/" aria-label="Início" className="transition-colors hover:text-slate-700">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                 <polyline points="9 22 9 12 15 12 15 22" />
               </svg>
-            </a>
+            </Link>
             {breadcrumbItems.map((item, index) => (
               <span key={item.label} className="flex items-center gap-2">
                 <span className="text-slate-300">/</span>
                 {index === breadcrumbItems.length - 1 ? (
                   <span className="font-medium text-slate-900">{item.label}</span>
                 ) : (
-                  <a href={item.href} className="transition-colors hover:text-slate-700">
+                  <Link href={item.href} className="transition-colors hover:text-slate-700">
                     {item.label}
-                  </a>
+                  </Link>
                 )}
               </span>
             ))}
@@ -168,7 +279,10 @@ export default function ExplorarPage() {
               </div>
               <input
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setPage(1);
+                }}
                 type="text"
                 placeholder="Buscar por título, problema, tecnologia (ex: IoT, React, Python) ou ODS..."
                 className="block w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
@@ -193,13 +307,24 @@ export default function ExplorarPage() {
           </div>
 
           <div className="mt-4 flex flex-wrap items-center gap-2">
-            {activeFilters.map((filter) => (
+            {selectedFilters.map(({ category, label }) => (
               <span
-                key={filter.label}
-                className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium ${filter.color}`}
+                key={`${category}-${label}`}
+                className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium ${
+                  category === "ods"
+                    ? "bg-orange-50 text-orange-700"
+                    : category === "maturity"
+                      ? "bg-blue-50 text-blue-700"
+                      : "bg-emerald-50 text-emerald-700"
+                }`}
               >
-                {filter.label}
-                <button type="button" className="rounded-full p-0.5 transition-colors hover:bg-black/5">
+                {label}
+                <button
+                  type="button"
+                  onClick={() => toggleFilter(category, label)}
+                  aria-label={`Remover filtro ${label}`}
+                  className="rounded-full p-0.5 transition-colors hover:bg-black/5"
+                >
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18" />
                     <line x1="6" y1="6" x2="18" y2="18" />
@@ -207,7 +332,11 @@ export default function ExplorarPage() {
                 </button>
               </span>
             ))}
-            <button type="button" className="text-xs font-medium text-slate-600 underline underline-offset-2 hover:text-slate-900">
+            <button
+              type="button"
+              onClick={resetFilters}
+              className="text-xs font-medium text-slate-600 underline underline-offset-2 hover:text-slate-900"
+            >
               Limpar todos os filtros
             </button>
           </div>
@@ -219,7 +348,11 @@ export default function ExplorarPage() {
               <div className="rounded-xl border border-slate-200 bg-white p-5">
                 <div className="flex items-center justify-between">
                   <h2 className="text-sm font-semibold text-slate-900">Filtros</h2>
-                  <button type="button" className="text-xs font-medium text-slate-500 hover:text-slate-900">
+                  <button
+                    type="button"
+                    onClick={resetFilters}
+                    className="text-xs font-medium text-slate-500 hover:text-slate-900"
+                  >
                     Resetar
                   </button>
                 </div>
@@ -234,7 +367,8 @@ export default function ExplorarPage() {
                       <label key={option} className="flex items-center gap-3">
                         <input
                           type="checkbox"
-                          checked={option === "Indústria & Inovação"}
+                          checked={filters.ods.includes(option)}
+                          onChange={() => toggleFilter("ods", option)}
                           className="h-4 w-4 rounded border-slate-300 text-orange-600 focus:ring-orange-500"
                         />
                         <span className="text-sm text-slate-700">{option}</span>
@@ -250,7 +384,8 @@ export default function ExplorarPage() {
                       <label key={option} className="flex items-center gap-3">
                         <input
                           type="checkbox"
-                          checked={option === "MVP Funcional"}
+                          checked={filters.maturity.includes(option)}
+                          onChange={() => toggleFilter("maturity", option)}
                           className="h-4 w-4 rounded border-slate-300 text-orange-600 focus:ring-orange-500"
                         />
                         <span className="text-sm text-slate-700">{option}</span>
@@ -266,6 +401,8 @@ export default function ExplorarPage() {
                       <label key={option} className="flex items-center gap-3">
                         <input
                           type="checkbox"
+                          checked={filters.profile.includes(option)}
+                          onChange={() => toggleFilter("profile", option)}
                           className="h-4 w-4 rounded border-slate-300 text-orange-600 focus:ring-orange-500"
                         />
                         <span className="text-sm text-slate-700">{option}</span>
@@ -292,13 +429,13 @@ export default function ExplorarPage() {
             </aside>
 
             <div className="flex-1">
-              <div className="flex items-center gap-2 text-sm text-emerald-700">
+              <div id="projetos" className="flex items-center gap-2 text-sm text-emerald-700">
                 <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-                Exibindo {projects.length} projetos ativos na rede
+                Exibindo {filteredProjects.length} projetos ativos na rede
               </div>
 
               <div className="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
-                {projects.map((project) => (
+                {visibleProjects.map((project) => (
                   <article key={project.title} className="flex flex-col rounded-xl border border-slate-200 bg-white transition-shadow hover:shadow-md">
                     <div className="relative h-44 w-full overflow-hidden rounded-t-xl bg-slate-200">
                       <div className="absolute left-3 top-3 flex flex-wrap gap-2">
@@ -375,32 +512,46 @@ export default function ExplorarPage() {
                             {project.collaborators}
                           </span>
                         </div>
-                        <a
-                          href="#"
+                        <Link
+                          href="/projeto/ecosensors-iot"
                           className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-orange-600 transition-colors hover:text-orange-500"
                         >
                           Ver Detalhes
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M5 12h14M12 5l7 7-7 7" />
                           </svg>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </article>
                 ))}
               </div>
+              {filteredProjects.length === 0 && (
+                <div className="mt-4 rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center">
+                  <h2 className="text-base font-semibold text-slate-900">Nenhum projeto encontrado</h2>
+                  <p className="mt-1 text-sm text-slate-600">Tente ajustar a busca ou remover alguns filtros.</p>
+                  <button
+                    type="button"
+                    onClick={resetFilters}
+                    className="mt-4 rounded-lg bg-orange-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-orange-700"
+                  >
+                    Limpar busca e filtros
+                  </button>
+                </div>
+              )}
 
               <nav aria-label="Paginação" className="mt-8 flex items-center justify-center gap-2">
                 <button
                   type="button"
-                  disabled={page === 1}
+                  onClick={() => setPage((current) => Math.max(1, current - 1))}
+                  disabled={page === 1 || filteredProjects.length === 0}
                   className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-sm text-slate-600 transition-colors hover:bg-slate-50 disabled:opacity-50 disabled:hover:bg-white"
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M19 12H5M12 19l-7-7 7-7" />
                   </svg>
                 </button>
-                {[1, 2, 3, 4].map((pageNumber) => (
+                {Array.from({ length: pageCount }, (_, index) => index + 1).map((pageNumber) => (
                   <button
                     key={pageNumber}
                     type="button"
@@ -416,7 +567,8 @@ export default function ExplorarPage() {
                 ))}
                 <button
                   type="button"
-                  disabled={page === 4}
+                  onClick={() => setPage((current) => Math.min(pageCount, current + 1))}
+                  disabled={page === pageCount || filteredProjects.length === 0}
                   className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-sm text-slate-600 transition-colors hover:bg-slate-50 disabled:opacity-50 disabled:hover:bg-white"
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -424,7 +576,9 @@ export default function ExplorarPage() {
                   </svg>
                 </button>
               </nav>
-              <p className="mt-3 text-center text-sm text-slate-500">Página {page} de 4 (24 projetos totais)</p>
+              <p className="mt-3 text-center text-sm text-slate-500">
+                Página {page} de {pageCount} ({filteredProjects.length} projetos encontrados)
+              </p>
             </div>
           </div>
         </div>
@@ -460,27 +614,27 @@ export default function ExplorarPage() {
               <h4 className="text-sm font-semibold text-slate-900">Links Rápidos</h4>
               <ul className="mt-4 space-y-2">
                 <li>
-                  <a href="/explorar" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
+                  <Link href="/explorar" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
                     Explorar Projetos
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
+                  <Link href="/projeto/ecosensors-iot" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
                     Mural de Vagas e Oportunidades
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
+                  <a href="mailto:lucas.silveira@inovahub.usp.br?subject=Publicar%20ideia%20no%20InovaHub" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
                     Publicar Ideia ou Desafio
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
+                  <a href="https://sdgs.un.org/goals" target="_blank" rel="noreferrer" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
                     Indicadores ONU & Metas ODS
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
+                  <a href="mailto:contato@inovahub.org?subject=Termos%20de%20Uso%20e%20Privacidade" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
                     Termos de Uso & Privacidade
                   </a>
                 </li>
@@ -491,12 +645,12 @@ export default function ExplorarPage() {
               <h4 className="text-sm font-semibold text-slate-900">Comunidade & Código</h4>
               <ul className="mt-4 space-y-2">
                 <li>
-                  <a href="#" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
+                  <a href="https://github.com/search?q=inovahub&type=repositories" target="_blank" rel="noreferrer" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
                     Repositório no GitHub
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
+                  <a href="https://github.com/search?q=inovahub&type=repositories" target="_blank" rel="noreferrer" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
                     Documentação Hackathon
                   </a>
                 </li>

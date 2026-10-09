@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import Header from "@/components/Header";
+import Link from "next/link";
 
 const breadcrumbItems = [
   { label: "Início", href: "/" },
@@ -27,6 +28,7 @@ const contactChannels = [
     label: "E-mail Institucional",
     value: "lucas.silveira@inovahub.usp.br",
     actionLabel: "Copiar",
+    href: undefined,
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
@@ -38,6 +40,7 @@ const contactChannels = [
     label: "WhatsApp Comercial",
     value: "+55 (16) 99821-3342",
     actionLabel: "Conversar",
+    href: "https://wa.me/5516998213342",
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
@@ -47,15 +50,30 @@ const contactChannels = [
 ];
 
 const externalLinks = [
-  { label: "LinkedIn", href: "#" },
-  { label: "GitHub", href: "#" },
-  { label: "Lattes", href: "#" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/search/results/people/?keywords=Lucas%20Silveira%20EcoSensors" },
+  { label: "GitHub", href: "https://github.com/search?q=inovahub%2Fecosensors-iot&type=repositories" },
+  { label: "Lattes", href: "https://lattes.cnpq.br/" },
 ];
 
 const footerLinks = {
-  Navegação: ["Início", "Destaques", "Explorar Projetos", "Publicar Solução"],
-  "Recursos do Hackathon": ["Repositório GitHub", "Documentação Técnica", "ODS da ONU", "Guia de Mentoria"],
-  "Termos & Legal": ["Termos de Uso", "Política de Privacidade", "Propriedade Intelectual", "Código de Conduta"],
+  Navegação: [
+    { label: "Início", href: "/" },
+    { label: "Destaques", href: "/explorar#projetos" },
+    { label: "Explorar Projetos", href: "/explorar" },
+    { label: "Publicar Solução", href: "/explorar" },
+  ],
+  "Recursos do Hackathon": [
+    { label: "Repositório GitHub", href: "https://github.com/search?q=inovahub%2Fecosensors-iot&type=repositories" },
+    { label: "Documentação Técnica", href: "https://github.com/search?q=inovahub%2Fecosensors-iot&type=repositories" },
+    { label: "ODS da ONU", href: "https://sdgs.un.org/goals/goal9" },
+    { label: "Guia de Mentoria", href: "mailto:lucas.silveira@inovahub.usp.br?subject=Mentoria%20InovaHub" },
+  ],
+  "Termos & Legal": [
+    { label: "Termos de Uso", href: "mailto:contato@inovahub.org?subject=Termos%20de%20Uso" },
+    { label: "Política de Privacidade", href: "mailto:contato@inovahub.org?subject=Privacidade" },
+    { label: "Propriedade Intelectual", href: "mailto:contato@inovahub.org?subject=Propriedade%20Intelectual" },
+    { label: "Código de Conduta", href: "mailto:contato@inovahub.org?subject=C%C3%B3digo%20de%20Conduta" },
+  ],
 };
 
 const project = {
@@ -111,34 +129,107 @@ const project = {
 export default function ProjectPage() {
   const [activeTab, setActiveTab] = useState("overview");
   const [copied, setCopied] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+  const [messageSent, setMessageSent] = useState(false);
+  const [actionNotice, setActionNotice] = useState("");
 
-  const handleCopy = () => {
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const showActionNotice = (notice: string) => {
+    setActionNotice(notice);
+    window.setTimeout(() => setActionNotice(""), 3500);
+  };
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(contactChannels[0].value);
+      setCopied(true);
+      showActionNotice("E-mail copiado para a área de transferência.");
+      window.setTimeout(() => setCopied(false), 2500);
+    } catch {
+      showActionNotice("Não foi possível copiar o e-mail neste navegador.");
+    }
+  };
+
+  const handleShare = async () => {
+    const shareData = { title: project.title, url: window.location.href };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(shareData.url);
+        showActionNotice("Link do projeto copiado para a área de transferência.");
+      }
+    } catch (error) {
+      if (error instanceof Error && error.name === "AbortError") return;
+      showActionNotice("Não foi possível compartilhar o projeto neste navegador.");
+    }
+  };
+
+  const handleContactClick = () => {
+    setActiveTab("contact");
+    document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const handleMessageSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    event.currentTarget.reset();
+    setMessageSent(true);
+  };
+
+  const closeMessageNotice = () => {
+    setMessageSent(false);
+  };
+
+  const handleSave = () => {
+    const nextSaved = !isSaved;
+    setIsSaved(nextSaved);
+    showActionNotice(nextSaved ? "Projeto salvo nesta demonstração." : "Projeto removido dos salvos.");
   };
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <Header />
 
+      {messageSent && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed right-4 top-20 z-50 flex max-w-sm items-start gap-3 rounded-lg border border-emerald-200 bg-white p-4 text-sm text-emerald-800 shadow-lg"
+        >
+          <span className="flex-1">Mensagem enviada com sucesso! (Demonstração local; não foi enviada a um servidor.)</span>
+          <button
+            type="button"
+            onClick={closeMessageNotice}
+            className="font-medium text-emerald-700 hover:text-emerald-900"
+            aria-label="Fechar confirmação"
+          >
+            Fechar
+          </button>
+        </div>
+      )}
+      {actionNotice && (
+        <div role="status" aria-live="polite" className="fixed right-4 top-20 z-50 max-w-sm rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-800 shadow-lg">
+          {actionNotice}
+        </div>
+      )}
+
       <main className="flex-1">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-slate-500">
-            <a href="#" className="transition-colors hover:text-slate-700">
+            <Link href="/" aria-label="Início" className="transition-colors hover:text-slate-700">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                 <polyline points="9 22 9 12 15 12 15 22" />
               </svg>
-            </a>
+            </Link>
             {breadcrumbItems.map((item, index) => (
               <span key={item.label} className="flex items-center gap-2">
                 <span className="text-slate-300">/</span>
                 {index === breadcrumbItems.length - 1 ? (
                   <span className="font-medium text-slate-900">{item.label}</span>
                 ) : (
-                  <a href={item.href} className="transition-colors hover:text-slate-700">
+                  <Link href={item.href} className="transition-colors hover:text-slate-700">
                     {item.label}
-                  </a>
+                  </Link>
                 )}
               </span>
             ))}
@@ -162,15 +253,18 @@ export default function ProjectPage() {
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <button
                 type="button"
+                onClick={handleSave}
+                aria-pressed={isSaved}
                 className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" />
                 </svg>
-                Salvar
+                {isSaved ? "Salvo" : "Salvar"}
               </button>
               <button
                 type="button"
+                onClick={handleShare}
                 className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -184,6 +278,7 @@ export default function ProjectPage() {
               </button>
               <button
                 type="button"
+                onClick={handleContactClick}
                 className="inline-flex items-center gap-2 rounded-lg bg-orange-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-orange-700"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -221,7 +316,9 @@ export default function ProjectPage() {
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">{project.deploy.description}</p>
                 <a
-                  href="#"
+                  href={`https://${project.deploy.url}`}
+                  target="_blank"
+                  rel="noreferrer"
                   className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-orange-600 transition-colors hover:text-orange-500"
                 >
                   {project.deploy.url}
@@ -249,7 +346,9 @@ export default function ProjectPage() {
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">{project.repository.description}</p>
                 <div className="mt-3 flex items-center justify-between">
                   <a
-                    href="#"
+                    href="https://github.com/inovahub/ecosensors-iot"
+                    target="_blank"
+                    rel="noreferrer"
                     className="inline-flex items-center gap-1 text-sm font-medium text-orange-600 transition-colors hover:text-orange-500"
                   >
                     {project.repository.url}
@@ -314,21 +413,54 @@ export default function ProjectPage() {
           {activeTab === "stack" && (
             <div className="mt-6 rounded-xl border border-slate-200 bg-white p-6">
               <h3 className="text-lg font-semibold text-slate-900">Stack & Repositórios</h3>
-              <p className="mt-2 text-sm text-slate-600">Conteúdo da seção de stack e repositórios.</p>
+              <p className="mt-2 text-sm text-slate-600">
+                Firmware ESP32-S3 em C++, ingestão de telemetria com Python e MQTT, rede LoRaWAN e painel web em Next.js.
+              </p>
+              <a
+                href="https://github.com/inovahub/ecosensors-iot"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-orange-600 hover:text-orange-700"
+              >
+                Abrir repositório do projeto
+              </a>
             </div>
           )}
 
           {activeTab === "vacancies" && (
             <div className="mt-6 rounded-xl border border-slate-200 bg-white p-6">
               <h3 className="text-lg font-semibold text-slate-900">Vagas e Necessidades</h3>
-              <p className="mt-2 text-sm text-slate-600">Conteúdo da seção de vagas e necessidades.</p>
+              <p className="mt-2 text-sm text-slate-600">O projeto está aberto a colaboração nestas frentes:</p>
+              <ul className="mt-4 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
+                {["Backend Go para telemetria", "Designer UI/UX", "Mentoria em IoT e LoRaWAN"].map((role) => (
+                  <li key={role} className="rounded-lg bg-slate-50 px-4 py-3">
+                    {role}
+                  </li>
+                ))}
+              </ul>
+              <button
+                type="button"
+                onClick={handleContactClick}
+                className="mt-4 rounded-lg bg-orange-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-orange-700"
+              >
+                Tenho interesse
+              </button>
             </div>
           )}
 
           {activeTab === "contact" && (
             <div className="mt-6 rounded-xl border border-slate-200 bg-white p-6">
               <h3 className="text-lg font-semibold text-slate-900">Contato com o Criador</h3>
-              <p className="mt-2 text-sm text-slate-600">Conteúdo da seção de contato.</p>
+              <p className="mt-2 text-sm text-slate-600">
+                Use o formulário de contato para enviar uma mensagem diretamente ao criador do projeto.
+              </p>
+              <button
+                type="button"
+                onClick={handleContactClick}
+                className="mt-4 rounded-lg bg-orange-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-orange-700"
+              >
+                Ir para o formulário
+              </button>
             </div>
           )}
         </div>
@@ -378,7 +510,7 @@ export default function ProjectPage() {
                   </span>
                 </div>
 
-                <form className="mt-6 space-y-5" onSubmit={(e) => e.preventDefault()}>
+                <form id="contact-form" className="mt-6 scroll-mt-24 space-y-5" onSubmit={handleMessageSubmit}>
                   <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-slate-700">
@@ -388,6 +520,8 @@ export default function ProjectPage() {
                         id="name"
                         name="name"
                         type="text"
+                        autoComplete="name"
+                        required
                         placeholder="Ex.: Dra. Marina Duarte"
                         className="mt-1.5 block w-full rounded-lg border border-slate-300 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
                       />
@@ -400,6 +534,8 @@ export default function ProjectPage() {
                         id="email"
                         name="email"
                         type="email"
+                        autoComplete="email"
+                        required
                         placeholder="marina@industria.com.br"
                         className="mt-1.5 block w-full rounded-lg border border-slate-300 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
                       />
@@ -412,6 +548,7 @@ export default function ProjectPage() {
                         id="institution"
                         name="institution"
                         type="text"
+                        required
                         placeholder="Ex.: Ambev Tech / Polo Industrial Campin"
                         className="mt-1.5 block w-full rounded-lg border border-slate-300 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
                       />
@@ -423,6 +560,7 @@ export default function ProjectPage() {
                       <select
                         id="reason"
                         name="reason"
+                        required
                         className="mt-1.5 block w-full rounded-lg border border-slate-300 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
                       >
                         <option value="">Selecione a finalidade...</option>
@@ -442,6 +580,8 @@ export default function ProjectPage() {
                       id="message"
                       name="message"
                       rows={5}
+                      required
+                      minLength={30}
                       placeholder="Olá Lucas, estou acompanhando a evolução do EcoSensors no InovaHub e temos interesse em avaliar um piloto na nossa linha de envase térmico..."
                       className="mt-1.5 block w-full rounded-lg border border-slate-300 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
                     />
@@ -491,20 +631,34 @@ export default function ProjectPage() {
                 <div key={channel.label} className="rounded-xl border border-slate-200 bg-white p-4">
                   <p className="text-xs font-medium text-slate-500">{channel.label}</p>
                   <p className="mt-1 text-sm font-semibold text-slate-900">{channel.value}</p>
-                  <button
-                    type="button"
-                    onClick={channel.label.includes("E-mail") ? handleCopy : undefined}
-                    className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-orange-600 transition-colors hover:text-orange-500"
-                  >
-                    {channel.icon}
-                    {copied && channel.label.includes("E-mail") ? "Copiado!" : channel.actionLabel}
-                  </button>
+                  {channel.href ? (
+                    <a
+                      href={channel.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-orange-600 transition-colors hover:text-orange-500"
+                    >
+                      {channel.icon}
+                      {channel.actionLabel}
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={handleCopy}
+                      className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-orange-600 transition-colors hover:text-orange-500"
+                    >
+                      {channel.icon}
+                      {copied ? "Copiado!" : channel.actionLabel}
+                    </button>
+                  )}
                 </div>
               ))}
               {externalLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
                   className="flex items-center justify-center rounded-xl border border-slate-200 bg-white p-4 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
                 >
                   {link.label}
@@ -564,10 +718,21 @@ export default function ProjectPage() {
                 <h4 className="text-sm font-semibold text-slate-900">{title}</h4>
                 <ul className="mt-4 space-y-2">
                   {links.map((link) => (
-                    <li key={link}>
-                      <a href="#" className="text-sm text-slate-600 transition-colors hover:text-slate-900">
-                        {link}
-                      </a>
+                    <li key={link.label}>
+                      {link.href.startsWith("/") ? (
+                        <Link href={link.href} className="text-sm text-slate-600 transition-colors hover:text-slate-900">
+                          {link.label}
+                        </Link>
+                      ) : (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-sm text-slate-600 transition-colors hover:text-slate-900"
+                        >
+                          {link.label}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>

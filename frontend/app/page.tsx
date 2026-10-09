@@ -253,6 +253,21 @@ export default function Home() {
           </div>
 
           <form className="mt-6 space-y-5" onSubmit={(e) => e.preventDefault()}>
+            {activeTab === "register" && (
+              <div>
+                <label htmlFor="full-name" className="block text-sm font-medium text-slate-700">
+                  Nome completo
+                </label>
+                <input
+                  id="full-name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  placeholder="Seu nome completo"
+                  className="mt-1.5 block w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+                />
+              </div>
+            )}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-slate-700">
                 E-mail ou Usuário
@@ -301,20 +316,20 @@ export default function Home() {
               </div>
             </div>
 
-            <button
-              type="submit"
+            <Link
+              href="/explorar"
               className="flex w-full items-center justify-center gap-2 rounded-lg bg-orange-600 py-3 text-sm font-semibold text-white transition-colors hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
             >
               Entrar no InovaHub
               {arrowRightIcon}
-            </button>
+            </Link>
           </form>
 
           <div className="mt-8 flex items-center justify-between text-xs">
-            <a href="/" className="flex items-center gap-1 font-medium text-slate-600 hover:text-slate-900">
+            <Link href="/" className="flex items-center gap-1 font-medium text-slate-600 hover:text-slate-900">
               {backArrowIcon}
               Voltar à Página Inicial
-            </a>
+            </Link>
             <a href="/explorar" className="flex items-center gap-1 font-medium text-slate-600 hover:text-slate-900">
               Explorar Projetos sem Login
               {searchIcon}
