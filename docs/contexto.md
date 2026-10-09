@@ -6,7 +6,7 @@ Estamos participando de um hackathon cujo objetivo é desenvolver uma aplicaçã
 
 O projeto escolhido é o **InovaHub**, uma plataforma digital voltada à divulgação, descoberta e conexão de projetos inovadores.
 
-Este documento serve como **contexto geral para sessões de IA**. A IA deve compreender o projeto, suas restrições, objetivos e decisões antes de responder a qualquer solicitação relacionada ao desenvolvimento. Este documento **não determina uma tarefa específica**: as solicitações feitas durante a sessão podem envolver código, documentação, prototipação, requisitos, ideias, arquitetura, design, planejamento, testes, README, Git, apresentação ou outros aspectos do projeto.
+Este documento serve como **contexto geral para sessões de IA**. A IA deve compreender o projeto suas restrições, objetivos e decisões antes de responder a qualquer solicitação relacionada ao desenvolvimento. Este documento **não determina uma tarefa específica**: as solicitações feitas durante a sessão podem envolver código, documentação, prototipação, requisitos, ideias, arquitetura, design, planejamento, testes, README, Git, apresentação ou outros aspectos do projeto.
 
 ---
 
